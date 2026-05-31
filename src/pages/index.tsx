@@ -1,100 +1,29 @@
-"use client";
-import { useAccount } from "wagmi";
+import type { GetStaticProps } from "next";
+import Head from "next/head";
+import { WagmiApp } from "../components/WagmiApp";
 
-import { Connect } from "../components/Connect";
-import { Account } from "../components/Account";
-import { Balance } from "../components/Balance";
-import { BlockNumber } from "../components/BlockNumber";
-import { NetworkSwitcher } from "../components/NetworkSwitcher";
-import { ReadContract } from "../components/ReadContract";
-import { ReadContracts } from "../components/ReadContracts";
-import { ReadContractsInfinite } from "../components/ReadContractsInfinite";
-import { SendTransaction } from "../components/SendTransaction";
-import { SendTransactionPrepared } from "../components/SendTransactionPrepared";
-import { SignMessage } from "../components/SignMessage";
-import { SignTypedData } from "../components/SignTypedData";
-import { WatchContractEvents } from "../components/WatchContractEvents";
-import { WatchPendingTransactions } from "../components/WatchPendingTransactions";
-import { WriteContract } from "../components/WriteContract";
-import { WriteContractPrepared } from "../components/WriteContractPrepared";
+type PageProps = {
+  buildTime: string;
+};
 
-function Page() {
-  const { isConnected } = useAccount();
+export const getStaticProps = (async () => {
+  return {
+    props: {
+      buildTime: new Date().toISOString(),
+    },
+  };
+}) satisfies GetStaticProps<PageProps>;
+
+function Page({ buildTime }: PageProps) {
   return (
     <>
-      <h1>wagmi v2 example</h1>
-
-      <Connect />
-
-      {isConnected && (
-        <>
-          <hr />
-          <h2>Network</h2>
-          <NetworkSwitcher />
-          <br />
-          <hr />
-          <h2>Account</h2>
-          <Account />
-          <br />
-          <hr />
-          <h2>Balance</h2>
-          <Balance />
-          <br />
-          <hr />
-          <h2>Block Number</h2>
-          <BlockNumber />
-          <br />
-          <hr />
-          <h2>Read Contract</h2>
-          <ReadContract />
-          <br />
-          <hr />
-          <h2>Read Contracts</h2>
-          <ReadContracts />
-          <br />
-          <hr />
-          <h2>Read Contracts Infinite</h2>
-          <ReadContractsInfinite />
-          <br />
-          <hr />
-          <h2>Send Transaction</h2>
-          <SendTransaction />
-          <br />
-          <hr />
-          <h2>Send Transaction (Prepared)</h2>
-          <SendTransactionPrepared />
-          <br />
-          <hr />
-          <h2>Sign Message</h2>
-          <SignMessage />
-          <br />
-          <hr />
-          <h2>Sign Typed Data</h2>
-          <SignTypedData />
-          <br />
-          <hr />
-          <h2>Watch Contract Events</h2>
-          <WatchContractEvents />
-          <br />
-          <hr />
-          <h2>Watch Pending Transactions</h2>
-          <WatchPendingTransactions />
-          <br />
-          <hr />
-          <h2>Write Contract</h2>
-          <WriteContract />
-          <br />
-          <hr />
-          <h2>Write Contract (Prepared)</h2>
-          <WriteContractPrepared />
-        </>
-      )}
+      <Head>
+        <title>Wagmi v2 Example - Web3 DApp with Next.js</title>
+      </Head>
+      
+      <WagmiApp />
     </>
   );
 }
-
-Page.getInitialProps = async () => {
-  return {};
-};
 
 export default Page;

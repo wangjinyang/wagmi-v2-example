@@ -7,7 +7,7 @@ const connectors = typeof window !== "undefined" ? [injected()] : [];
 export const config = createConfig({
   chains: [mainnet, sepolia],
   connectors,
-  ssr: false,
+  ssr: true,
   transports: {
     // Using WebSocket for real-time event listening, with HTTP fallback
     [mainnet.id]: fallback([
