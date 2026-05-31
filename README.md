@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org) + [wagmi](https://wagmi.sh) project bootstrapped with [`create-wagmi`](https://github.com/wagmi-dev/wagmi/tree/main/packages/create-wagmi)
+This is a [Next.js](https://nextjs.org) + [wagmi v2](https://2.x.wagmi.sh) project bootstrapped with [`create-wagmi`](https://github.com/wevm/wagmi/tree/2.x/packages/create-wagmi)
 
 # Getting Started
 
@@ -8,9 +8,9 @@ Once the webpage has loaded, changes made to files inside the `src/` directory (
 
 # Learn more
 
-To learn more about [Next.js](https://nextjs.org) or [wagmi](https://wagmi.sh), check out the following resources:
+To learn more about [Next.js](https://nextjs.org) or [wagmi v2](https://2.x.wagmi.sh), check out the following resources:
 
-- [wagmi Documentation](https://wagmi.sh) – learn about wagmi Hooks and API.
-- [wagmi Examples](https://wagmi.sh/examples/connect-wallet) – a suite of simple examples using wagmi.
+- [wagmi v2 Documentation](https://2.x.wagmi.sh/) – learn about wagmi Hooks and API.
+- [wagmi v2 Examples](https://2.x.wagmi.sh/react/guides/connect-wallet) – a suite of simple examples using wagmi.
 - [Next.js Documentation](https://nextjs.org/docs) learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
