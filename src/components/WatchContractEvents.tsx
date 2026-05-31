@@ -10,14 +10,26 @@ export function WatchContractEvents() {
   useWatchContractEvent({
     ...usdcContractConfig,
     eventName: "Transfer",
-    onLogs: (logs) => setUsdcLogs((x) => [...x, ...logs]),
+    onLogs: (logs) => {
+      console.log('USDC Transfer event received:', logs);
+      setUsdcLogs((x) => [...x, ...logs]);
+    },
+    onError: (error) => {
+      console.error('USDC watch error:', error);
+    },
   });
 
   const [wagmiLogs, setWagmiLogs] = useState<Log[]>([]);
   useWatchContractEvent({
     ...wagmiContractConfig,
     eventName: "Transfer",
-    onLogs: (logs) => setWagmiLogs((x) => [...x, ...logs]),
+    onLogs: (logs) => {
+      console.log('Wagmi Transfer event received:', logs);
+      setWagmiLogs((x) => [...x, ...logs]);
+    },
+    onError: (error) => {
+      console.error('Wagmi watch error:', error);
+    },
   });
 
   return (

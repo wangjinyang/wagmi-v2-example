@@ -1,19 +1,24 @@
-import { useState } from 'react'
-import type { Hex } from 'viem'
-import { useWatchPendingTransactions } from 'wagmi'
+import { useState } from "react";
+import type { Hex } from "viem";
+import { useWatchPendingTransactions } from "wagmi";
 
 export function WatchPendingTransactions() {
-  const [hashes, setHashes] = useState<Hex[]>([])
+  const [hashes, setHashes] = useState<Hex[]>([]);
+
   useWatchPendingTransactions({
-    onTransactions: (hashes) => setHashes((x) => [...x, ...hashes]),
-  })
+    onTransactions: (hashes) => {
+      console.log("Pending transactions received:", hashes);
+      setHashes((x) => [...x, ...hashes]);
+    },
+    onError: (error) => {
+      console.error("Watch pending transactions error:", error);
+    },
+  });
 
   return (
-    <div>
-      <details>
-        <summary>{hashes.length} hashes logged</summary>
-        {hashes.reverse().join('\n')}
-      </details>
-    </div>
-  )
+    <details>
+      <summary>{hashes.length} hashes logged</summary>
+      {hashes.reverse().join("\n")}
+    </details>
+  );
 }

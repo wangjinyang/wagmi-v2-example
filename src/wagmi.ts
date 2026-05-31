@@ -1,4 +1,4 @@
-import { http, createConfig } from "wagmi";
+import { http, webSocket, createConfig, fallback } from "wagmi";
 import { mainnet, sepolia } from "wagmi/chains";
 import { coinbaseWallet, injected, walletConnect } from "wagmi/connectors";
 import getConfig from "next/config";
@@ -21,9 +21,15 @@ export const config = createConfig({
   connectors,
   ssr: true,
   transports: {
-    // Using public RPC endpoints for demo purposes, https://chainlist.org/
-    [mainnet.id]: http('https://ethereum-rpc.publicnode.com'),
-    [sepolia.id]: http('https://ethereum-sepolia-rpc.publicnode.com'),
+    // Using WebSocket for real-time event listening, with HTTP fallback
+    [mainnet.id]: fallback([
+      webSocket('wss://ethereum-rpc.publicnode.com'),
+      http('https://ethereum-rpc.publicnode.com'),
+    ]),
+    [sepolia.id]: fallback([
+      webSocket('wss://ethereum-sepolia-rpc.publicnode.com'),
+      http('https://ethereum-sepolia-rpc.publicnode.com'),
+    ]),
   },
 });
 
