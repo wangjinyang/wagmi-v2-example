@@ -1,34 +1,22 @@
 import { http, webSocket, createConfig, fallback } from "wagmi";
 import { mainnet, sepolia } from "wagmi/chains";
-import { coinbaseWallet, injected, walletConnect } from "wagmi/connectors";
-import getConfig from "next/config";
+import { injected } from "wagmi/connectors";
 
-const { publicRuntimeConfig } = getConfig();
-
-const { WC_PROJECT_ID } = publicRuntimeConfig;
-
-const connectors =
-  typeof window !== "undefined"
-    ? [
-        injected(),
-        coinbaseWallet({ appName: "Create Wagmi" }),
-        walletConnect({ projectId: WC_PROJECT_ID }),
-      ]
-    : [];
+const connectors = typeof window !== "undefined" ? [injected()] : [];
 
 export const config = createConfig({
   chains: [mainnet, sepolia],
   connectors,
-  ssr: true,
+  ssr: false,
   transports: {
     // Using WebSocket for real-time event listening, with HTTP fallback
     [mainnet.id]: fallback([
-      webSocket('wss://ethereum-rpc.publicnode.com'),
-      http('https://ethereum-rpc.publicnode.com'),
+      webSocket("wss://ethereum-rpc.publicnode.com"),
+      http("https://ethereum-rpc.publicnode.com"),
     ]),
     [sepolia.id]: fallback([
-      webSocket('wss://ethereum-sepolia-rpc.publicnode.com'),
-      http('https://ethereum-sepolia-rpc.publicnode.com'),
+      webSocket("wss://ethereum-sepolia-rpc.publicnode.com"),
+      http("https://ethereum-sepolia-rpc.publicnode.com"),
     ]),
   },
 });
