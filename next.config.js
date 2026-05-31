@@ -4,8 +4,9 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // If deploying to a GitHub Pages subpath, uncomment and configure the line below
-  // basePath: '/your-repo-name',
+  // GitHub Pages subpath configuration
+  // For local development at root, set NEXT_PUBLIC_BASE_PATH=''
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH || '/wagmi-v2-example',
 };
 
 module.exports = nextConfig;
