@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAccount, useBalance } from "wagmi";
 
-import { type Address } from "viem";
+import { formatUnits, type Address } from "viem";
 
 export function Balance() {
   return (
@@ -25,7 +25,7 @@ export function AccountBalance() {
 
   return (
     <div>
-      {`${data?.formatted} ${data?.symbol} `}
+      {`${data?.value ? formatUnits(data.value, data.decimals) : ""} ${data?.symbol} `}
       <button onClick={() => refetch()}>refetch</button>
     </div>
   );
@@ -53,7 +53,7 @@ export function FindBalance() {
         {isLoading ? "fetching..." : "fetch"}
       </button>
       <div>
-        {data?.formatted} {data?.symbol}
+        {`${data?.value ? formatUnits(data.value, data.decimals) : ""} ${data?.symbol} `}
       </div>
     </div>
   );
