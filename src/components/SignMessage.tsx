@@ -39,7 +39,7 @@ export function SignMessage() {
           signMessage({ message });
         }}
       >
-        <input name="message" type="text" required />
+        <input name="message" type="text" defaultValue="Hello, world!" required />
         <button disabled={isLoading}>
           {isLoading ? "Check Wallet" : "Sign Message"}
         </button>

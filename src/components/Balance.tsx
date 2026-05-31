@@ -52,7 +52,9 @@ export function FindBalance() {
       >
         {isLoading ? "fetching..." : "fetch"}
       </button>
-      <div>{data?.formatted}</div>
+      <div>
+        {data?.formatted} {data?.symbol}
+      </div>
     </div>
   );
 }

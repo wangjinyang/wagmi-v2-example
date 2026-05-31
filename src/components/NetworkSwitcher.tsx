@@ -6,17 +6,21 @@ export function NetworkSwitcher() {
 
   return (
     <div>
-      <div>Connected to {chain?.name || " (unsupported)"}</div>
+      <div>
+        {chain?.name
+          ? `Connected to ${chain.name}`
+          : " (unsupported chain or unconnected)"}
+      </div>
       <br />
       <div>
-        Switch to: {" "}
+        Switch to:{" "}
         {chains.map((x) =>
           x.id === chain?.id ? null : (
             <button key={x.id} onClick={() => switchChain({ chainId: x.id })}>
               {x.name}
               {status === "pending" && " (switching)"}
             </button>
-          )
+          ),
         )}
       </div>
 

@@ -1,4 +1,5 @@
 import { erc20Abi } from 'viem'
+import { mainnet } from 'wagmi/chains'
 
 export const wagmiContractConfig = {
   address: '0xFBA3912Ca04dd458c843e2EE08967fC04f3579c2',
@@ -201,9 +202,11 @@ export const wagmiContractConfig = {
       type: 'function',
     },
   ],
+  chainId: mainnet.id,
 } as const
 
 export const usdcContractConfig = {
-  address: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
+  address: '0xA0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
   abi: erc20Abi,
+  chainId: mainnet.id,
 } as const

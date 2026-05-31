@@ -21,8 +21,9 @@ export const config = createConfig({
   connectors,
   ssr: true,
   transports: {
-    [mainnet.id]: http(),
-    [sepolia.id]: http(),
+    // Using public RPC endpoints for demo purposes, https://chainlist.org/
+    [mainnet.id]: http('https://ethereum-rpc.publicnode.com'),
+    [sepolia.id]: http('https://ethereum-sepolia-rpc.publicnode.com'),
   },
 });
 

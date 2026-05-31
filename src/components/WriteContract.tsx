@@ -21,7 +21,7 @@ export function WriteContract() {
       <div>
         <input
           onChange={(e) => setTokenId(e.target.value)}
-          placeholder="token id"
+          placeholder="token id (e.g., 999999...)"
           value={tokenId}
         />
         <button

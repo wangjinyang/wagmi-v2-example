@@ -1,4 +1,5 @@
 import { useSimulateContract } from "wagmi";
+import { stringify } from "viem";
 
 import { wagmiContractConfig } from "./contracts";
 
@@ -12,7 +13,14 @@ export function WriteContractPrepared() {
     <div>
       {isLoading && <div>Loading...</div>}
       {isError && <pre>{error.message}</pre>}
-      {isSuccess && "success"}
+      {isSuccess && (
+        <div>
+          <div>Simulation Success!</div>
+          <div>
+            <pre>{stringify(data, null, 2)}</pre>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

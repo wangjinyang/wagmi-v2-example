@@ -11,7 +11,7 @@ export function SendTransactionPrepared() {
   });
   const { data, error, isError, isLoading } = usePrepareTransactionRequest({
     to: toAddress,
-    value: parseEther("0.000001"),
+    value: parseEther("100", "wei"), 
   });
 
   return (

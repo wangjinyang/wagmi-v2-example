@@ -13,7 +13,12 @@ export function SendTransaction() {
     data: receipt,
     isLoading: isPending,
     isSuccess,
-  } = useWaitForTransactionReceipt({ hash: data });
+  } = useWaitForTransactionReceipt({ 
+    hash: data,
+    query: {
+      enabled: !!data,
+    },
+  });
 
   const isLoading = status === "pending";
 
@@ -25,8 +30,8 @@ export function SendTransaction() {
         disabled={isLoading}
         onClick={() =>
           sendTransaction({
-            to: "0xe81fDb15f3eb1f6CF9Fade40A47846D01D41B7Af",
-            value: parseEther("0.0001"), // 0.0001 ETH
+            to: "0xad4353C20623De459458FEBEde9e6A321D53c8e6",
+            value: parseEther("1"), // 1 ETH
           })
         }
       >
@@ -39,7 +44,10 @@ export function SendTransaction() {
       {isPending && <div>Pending...</div>}
       {isSuccess && (
         <>
-          <a target="__blank" href={`${chain?.blockExplorers?.default?.url}/tx/${data}`}>
+          <a
+            target="__blank"
+            href={`${chain?.blockExplorers?.default?.url}/tx/${data}`}
+          >
             Transaction Hash: {data}
           </a>
           <div>
