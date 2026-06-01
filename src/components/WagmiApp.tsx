@@ -19,9 +19,21 @@ import { WriteContractPrepared } from "./WriteContractPrepared";
 
 export function WagmiApp() {
   const { isConnected } = useAccount();
-  
+
   return (
     <>
+      <p>
+        Looking for the wagmi v3 demo?{" "}
+        <a
+          href="https://wangjinyang.github.io/wagmi-v3-example/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Open the v3 demo
+        </a>
+        .
+      </p>
+
       <Connect />
 
       {isConnected && (
